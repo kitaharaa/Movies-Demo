@@ -15,12 +15,15 @@ interface MovieDao {
     @Query("SELECT * FROM Movies")
     fun getAllMoviesList(): List<Movie>?
 
+    @Query("SELECT * FROM Movies m ORDER BY m.title")
+    suspend fun getSortedByTitle():List<Movie>?
+    @Query("SELECT * FROM Movies m ORDER BY m.description") //todo change database and sort by date
+    suspend fun getSortedByDate():List<Movie>?
+
     @Insert
     suspend fun insertMovie(movie: List<Movie>)
 
     @Update
     suspend fun updateMovie(movie: Movie)
 
-    @Query("DELETE FROM Movies")
-    suspend fun deleteAllMovies()
 }
