@@ -72,8 +72,9 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
 
     implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.compose)
     kapt(libs.hilt.android.compiler)
+
+    implementation(libs.androidx.hilt.navigation)
 
     annotationProcessor(libs.androidx.room.compiler)
     kapt(libs.room.compiler)
