@@ -12,4 +12,6 @@
     <string name="watch_trailer">Watch trailer</string>
     <string name="drop_down">Drop Down</string>
     <string name="_10">/10</string>
+    <string name="movies">Movies</string>
+    <string name="details">Details</string>
 </resources>

@@ -15,8 +15,6 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(
     private val dao: MovieDao,
 ) : ViewModel() {
-    /* private val _movieDataFlow: MutableStateFlow<Movie?> = MutableStateFlow(null)
-     val movieDataFlow get() = _movieDataFlow.asStateFlow()*/
 
     fun pushValueWithId(id: Int?): Flow<Movie?> {
         return id?.let {

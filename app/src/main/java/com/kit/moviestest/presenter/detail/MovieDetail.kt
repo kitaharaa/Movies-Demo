@@ -57,7 +57,6 @@ fun MovieDetail(
                 )
 
                 Text(
-
                     modifier = Modifier.weight(.5f),
                     textAlign = TextAlign.End,
                     text = buildAnnotatedString {
@@ -89,7 +88,7 @@ fun MovieDetail(
                 colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
                 onClick = onFavouriteClicked
             ) {
-                if (pickedMovie.isInWatchList)
+                if (!pickedMovie.isInWatchList)
                     Icon(
                         modifier = Modifier.size(15.dp),
                         imageVector = Icons.Default.ArrowDropDown,

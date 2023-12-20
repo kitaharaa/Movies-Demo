@@ -47,7 +47,7 @@ fun DetailScreen(id: Int? = null, onBackPressed: () -> Unit = {}) {
             TopAppBar(
                 title = {
                     Text(
-                        text = "Movies",
+                        text = stringResource(R.string.movies),
                         fontWeight = FontWeight.Bold,
                         fontSize = 23.sp
                     )
@@ -92,6 +92,12 @@ fun DetailScreen(id: Int? = null, onBackPressed: () -> Unit = {}) {
                     }
                 )
 
+                Spacer(Modifier.height(10.dp))
+
+                ShortDescription(pickedMovie.description)
+
+                BaseDetails(pickedMovie.genre, pickedMovie.releasedDate)
+
             } ?: Box(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -104,4 +110,13 @@ fun DetailScreen(id: Int? = null, onBackPressed: () -> Unit = {}) {
             }
         }
     }
+}
+
+@Composable
+fun SectionDivider() {
+    Spacer(Modifier.height(10.dp))
+
+    Divider(Modifier.fillMaxWidth())
+
+    Spacer(Modifier.height(20.dp))
 }
