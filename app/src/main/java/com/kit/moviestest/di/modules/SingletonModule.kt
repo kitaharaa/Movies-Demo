@@ -8,11 +8,13 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class SingletonModule {
     @Provides
+    @Singleton
     fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
         context,
         MovieDatabase::class.java,
@@ -22,5 +24,6 @@ class SingletonModule {
         .build()
 
     @Provides
+    @Singleton
     fun provideMovieDao(db: MovieDatabase) = db.movieDao()
 }

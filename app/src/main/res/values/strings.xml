@@ -2,4 +2,7 @@
     <string name="app_name">MoviesTest</string>
     <string name="on_my_watch_list">On my watch list</string>
     <string name="wait_a_sec">Wait a sec…</string>
+    <string name="title">Title</string>
+    <string name="released_data">Released Data</string>
+    <string name="cancel">Cancel</string>
 </resources>
