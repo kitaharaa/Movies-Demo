@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kit.moviestest.data.room.entity.Movie
+import com.kit.moviestest.domain.retrieveYear
 
 @Composable
 fun MovieCard(
@@ -41,7 +42,7 @@ fun MovieCard(
 
             MovieCardText(
                 movie.title,
-                movie.releasedDate,
+                movie.releasedDate.retrieveYear(),
                 movie.duration,
                 movie.genre,
                 movie.isInWatchList

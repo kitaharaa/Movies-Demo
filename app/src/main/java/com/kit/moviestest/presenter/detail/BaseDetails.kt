@@ -18,9 +18,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kit.moviestest.R
+import com.kit.moviestest.domain.parseIntoString
+import java.util.Date
 
 @Composable
-fun BaseDetails(genre: String, releasedDate: String) {
+fun BaseDetails(genre: String, releasedDate: Date) {
     SectionDivider()
 
     LazyVerticalGrid(
@@ -33,7 +35,8 @@ fun BaseDetails(genre: String, releasedDate: String) {
         itemText(genre)
 
         itemTitle("Released date")
-        itemText(releasedDate)
+
+        itemText(releasedDate.parseIntoString())
     }
 }
 

@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kit.moviestest.R
 
-
 @Composable
 fun RowScope.MovieCardText(
     title: String,
@@ -33,7 +32,7 @@ fun RowScope.MovieCardText(
     ) {
 
         Text(
-            text = "$title (${releasedDate.split(" ")[2]})",
+            text = "$title ($releasedDate)",
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.Bold
         )

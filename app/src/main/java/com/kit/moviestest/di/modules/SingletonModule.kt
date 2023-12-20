@@ -20,7 +20,7 @@ class SingletonModule {
         MovieDatabase::class.java,
         "Pre-populated Movies"
     )
-        .createFromAsset("Pre-populated Movies")
+        .createFromAsset("Movie Unique Database")
         .build()
 
     @Provides
