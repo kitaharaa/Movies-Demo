@@ -2,13 +2,19 @@
 
 package com.kit.moviestest.presenter.detail
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,18 +29,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kit.moviestest.R
 
 @Composable
 @Preview
-fun DetailScreen(id: Int? = null) {
+fun DetailScreen(id: Int? = null, onBackPressed: () -> Unit = {}) {
     val viewModel = hiltViewModel<DetailViewModel>()
 
-    val pickedItem by viewModel.movieDataFlow.collectAsState()
-
-    viewModel.pushValueWithId(id)
+    Log.e("Id", id.toString())
+    val pickedItem by viewModel.pushValueWithId(id).collectAsState(initial = null)
 
     Scaffold(
         topBar = {
@@ -48,11 +54,10 @@ fun DetailScreen(id: Int? = null) {
                 },
                 navigationIcon = {
                     IconButton(
-                        onClick = {
-                            //todo nav back
-                        }
+                        onClick = onBackPressed
                     ) {
                         Icon(
+                            modifier = Modifier.size(60.dp),
                             imageVector = Icons.Default.KeyboardArrowLeft,
                             contentDescription = stringResource(R.string.go_back)
                         )
@@ -61,7 +66,6 @@ fun DetailScreen(id: Int? = null) {
             )
         }
     ) {
-
         Column(
             Modifier
                 .padding(it)
@@ -69,20 +73,32 @@ fun DetailScreen(id: Int? = null) {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Divider(Modifier.fillMaxWidth())
+
+            Spacer(Modifier.height(20.dp))
 
             pickedItem?.let { pickedMovie ->
-                //todo add ui
-                /*MovieCard(
-                    movie = pickedMovie,
-                    onItemClicked = {}
-                )*/
+                Log.e("NewItem", pickedMovie.toString())
+                MovieDetail(
+                    pickedMovie = pickedMovie,
+                    onWatchClicked = {
+                        //todo open youtube
+                    },
+                    onFavouriteClicked = {
+                        //update db
+                        viewModel.updateFavourite(
+                            id = pickedMovie.id
+                        )
+                    }
+                )
+
             } ?: Box(
                 modifier = Modifier
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "There is no data about movie",
+                    text = stringResource(R.string.there_is_no_data_about_movie),
                     fontSize = 24.sp
                 )
             }

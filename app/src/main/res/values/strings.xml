@@ -6,4 +6,10 @@
     <string name="released_data">Released Data</string>
     <string name="cancel">Cancel</string>
     <string name="go_back">Go back</string>
+    <string name="there_is_no_data_about_movie">There is no data about movie</string>
+    <string name="add_to_watchlist">add to watchlist</string>
+    <string name="remove_from_watchlist">remove from watchlist</string>
+    <string name="watch_trailer">Watch trailer</string>
+    <string name="drop_down">Drop Down</string>
+    <string name="_10">/10</string>
 </resources>

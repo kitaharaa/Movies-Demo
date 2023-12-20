@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.kit.moviestest.data.room.entity.Movie
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
@@ -18,11 +19,14 @@ interface MovieDao {
     suspend fun getSortedByDate(): List<Movie>?
 
     @Query("SELECT * FROM Movies m WHERE m.id =:id")
-    suspend fun getItemById(id: Int): Movie?
+    fun getItemById(id: Int): Flow<Movie?>
 
     @Insert
     suspend fun insertMovie(movie: List<Movie>)
 
     @Update
     suspend fun updateMovie(movie: Movie)
+
+    @Query("UPDATE Movies  SET is_in_watch_list = NOT is_in_watch_list WHERE id=:id")
+    fun invertItemBoolean(id: Int)
 }

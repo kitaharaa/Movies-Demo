@@ -14,9 +14,9 @@ import androidx.compose.ui.unit.dp
 import com.kit.moviestest.R
 
 @Composable
-fun RowScope.MovieImage(image: Bitmap?, title: String) {
+fun RowScope.MovieImage(image: Bitmap?, title: String, weight: Float = 1f) {
     val imageModifier = Modifier
-        .weight(1f)
+        .weight(weight)
         .fillMaxWidth()
         .clip(RoundedCornerShape(10.dp))
 

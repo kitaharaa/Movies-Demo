@@ -6,24 +6,29 @@ import com.kit.moviestest.data.room.dao.MovieDao
 import com.kit.moviestest.data.room.entity.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val dao: MovieDao
+    private val dao: MovieDao,
 ) : ViewModel() {
-    private val _movieDataFlow: MutableStateFlow<Movie?> = MutableStateFlow(null)
-    val movieDataFlow get() = _movieDataFlow.asStateFlow()
+    /* private val _movieDataFlow: MutableStateFlow<Movie?> = MutableStateFlow(null)
+     val movieDataFlow get() = _movieDataFlow.asStateFlow()*/
 
-    fun pushValueWithId(id: Int?) {
+    fun pushValueWithId(id: Int?): Flow<Movie?> {
+        return id?.let {
+            dao.getItemById(it)
+        } ?: flow{
+            emit(null)
+        }
+    }
+
+    fun updateFavourite(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-
-            id?.let {
-                _movieDataFlow.value = dao.getItemById(it)
-            }
+            dao.invertItemBoolean(id = id)
         }
     }
 }

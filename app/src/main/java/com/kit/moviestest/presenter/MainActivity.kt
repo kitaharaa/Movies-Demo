@@ -41,7 +41,9 @@ class MainActivity : ComponentActivity() {
                                 type = NavType.IntType
                             })
                     ) { backStackEntry ->
-                        DetailScreen(backStackEntry.arguments?.getInt(PICKED_CARD_ID_KEY))
+                        DetailScreen(backStackEntry.arguments?.getInt(PICKED_CARD_ID_KEY)) {
+                            navController.popBackStack()
+                        }
                     }
                 }
             }
