@@ -20,11 +20,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.kit.moviestest.R
 
 @Composable
 @Preview
@@ -41,7 +43,7 @@ fun MoviesScreen(navigateToDetail: (Int) -> Unit = {}) {
         topBar = {
             MediumTopAppBar(title = {
                 Text(
-                    text = "Movies",
+                    text = stringResource(R.string.movies),
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp
                 )
@@ -51,7 +53,7 @@ fun MoviesScreen(navigateToDetail: (Int) -> Unit = {}) {
                         modifier = Modifier.padding(end = 15.dp),
                         onClick = { showBottomSheet = true }) {
                         Text(
-                            text = "Sort",
+                            text = stringResource(R.string.sort),
                             color = Color.Black,
                             fontWeight = FontWeight.SemiBold,
                             fontSize = 20.sp
@@ -92,6 +94,5 @@ fun MoviesScreen(navigateToDetail: (Int) -> Unit = {}) {
                 }
             )
         }
-
     }
 }

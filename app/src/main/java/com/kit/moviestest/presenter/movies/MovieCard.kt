@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kit.moviestest.data.room.entity.Movie
 
-
 @Composable
 fun MovieCard(
     modifier: Modifier = Modifier,
@@ -44,7 +43,8 @@ fun MovieCard(
                 movie.title,
                 movie.releasedDate,
                 movie.duration,
-                movie.genre
+                movie.genre,
+                movie.isInWatchList
             )
         }
 

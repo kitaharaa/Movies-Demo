@@ -22,7 +22,8 @@ fun RowScope.MovieCardText(
     title: String,
     releasedDate: String,
     duration: String,
-    genre: String
+    genre: String,
+    inWatchList: Boolean,
 ) {
     Column(
         modifier = Modifier
@@ -45,11 +46,12 @@ fun RowScope.MovieCardText(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text(
-            text = stringResource(R.string.on_my_watch_list).uppercase(),
-            style = MaterialTheme.typography.bodySmall,
-            color = Color.LightGray,
-            fontWeight = FontWeight.Bold
-        )
+        if (inWatchList)
+            Text(
+                text = stringResource(R.string.on_my_watch_list).uppercase(),
+                style = MaterialTheme.typography.bodySmall,
+                color = Color.LightGray,
+                fontWeight = FontWeight.Bold
+            )
     }
 }
