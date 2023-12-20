@@ -3,10 +3,13 @@ package com.kit.moviestest.presenter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.kit.moviestest.data.navigation.AppNavigation
+import com.kit.moviestest.data.navigation.AppNavigation.Companion.PICKED_CARD_ID_KEY
 import com.kit.moviestest.presenter.detail.DetailScreen
 import com.kit.moviestest.presenter.movies.MoviesScreen
 import com.kit.moviestest.presenter.ui.theme.MoviesTestTheme
@@ -27,12 +30,18 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable(AppNavigation.Movies.destination) {
                         MoviesScreen {
-                            //todo pass id in argument
+                            navController.navigate(AppNavigation.Detail.destination + "/$it")
                         }
                     }
 
-                    composable(AppNavigation.Detail.destination) {
-                        DetailScreen()
+                    composable(
+                        route = AppNavigation.Detail.destination + "/{$PICKED_CARD_ID_KEY}",
+                        arguments = listOf(
+                            navArgument(name = PICKED_CARD_ID_KEY) {
+                                type = NavType.IntType
+                            })
+                    ) { backStackEntry ->
+                        DetailScreen(backStackEntry.arguments?.getInt(PICKED_CARD_ID_KEY))
                     }
                 }
             }
