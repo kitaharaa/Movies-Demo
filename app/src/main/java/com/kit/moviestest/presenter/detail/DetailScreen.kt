@@ -2,6 +2,8 @@
 
 package com.kit.moviestest.presenter.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,6 +28,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kit.moviestest.R
+
 
 @Composable
 @Preview
@@ -73,6 +77,8 @@ fun DetailScreen(id: Int? = null, onBackPressed: () -> Unit = {}) {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            val c = LocalContext.current
+
             Divider(Modifier.fillMaxWidth())
 
             Spacer(Modifier.height(20.dp))
@@ -82,7 +88,12 @@ fun DetailScreen(id: Int? = null, onBackPressed: () -> Unit = {}) {
                 MovieDetail(
                     pickedMovie = pickedMovie,
                     onWatchClicked = {
-                        //todo open youtube
+                        c.startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse(pickedMovie.trailerLink)
+                            )
+                        )
                     },
                     onFavouriteClicked = {
                         //update db
