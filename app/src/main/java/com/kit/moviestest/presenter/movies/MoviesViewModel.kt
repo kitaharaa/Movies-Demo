@@ -13,12 +13,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
-    private val dao: MovieDao
+    private val dao: MovieDao,
 ) : ViewModel() {
     private val _moviesFlow: MutableStateFlow<List<Movie>?> = MutableStateFlow(null)
     val moviesFlow get() = _moviesFlow.asStateFlow()
 
-    init {
+    fun pushDefault() {
         viewModelScope.launch(Dispatchers.IO) {
             _moviesFlow.value = dao.getAllMovies()
         }

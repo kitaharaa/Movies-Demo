@@ -37,6 +37,8 @@ fun MoviesScreen(navigateToDetail: (Int) -> Unit = {}) {
 
     val movieList by viewModel.moviesFlow.collectAsState()
 
+    viewModel.pushDefault()
+
     val sheetState = rememberModalBottomSheetState()
     var showBottomSheet by remember { mutableStateOf(false) }
 

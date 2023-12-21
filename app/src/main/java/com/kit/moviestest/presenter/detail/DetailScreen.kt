@@ -37,7 +37,6 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kit.moviestest.R
 
-
 @Composable
 @Preview
 fun DetailScreen(id: Int? = null, onBackPressed: () -> Unit = {}) {

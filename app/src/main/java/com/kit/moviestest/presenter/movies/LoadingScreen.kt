@@ -1,5 +1,6 @@
 package com.kit.moviestest.presenter.movies
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -25,7 +26,11 @@ fun LoadingDataScreen() {
         contentAlignment = Alignment.Center
 
     ) {
-        Column {
+        Column(
+            Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            ) {
             Text(
                 text = stringResource(R.string.wait_a_sec),
                 fontSize = 24.sp
